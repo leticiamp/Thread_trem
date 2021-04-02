@@ -21,6 +21,7 @@ public:
 //Cria um sinal
 signals:
     void updateGUI(int,int,int);
+    void status(int, bool); //Informa quando o trem entrou e saiu da regiao critica
 
 private:
    int x;           //posição X do trem na tela

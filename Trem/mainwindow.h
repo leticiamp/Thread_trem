@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "trem.h"
+#include <QDebug>
+#include <QQueue>
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +21,7 @@ public:
 
 public slots:
     void updateInterface(int,int,int);
+    void signalProcessing(int, bool);
 
 private slots:
     void on_pushButton_clicked();
@@ -44,6 +47,22 @@ private:
     Trem *trem3;
     Trem *trem4;
     Trem *trem5;
+
+    // Prioridade de cada trem
+    int prioridadeT1;
+    int prioridadeT2;
+    int prioridadeT3;
+    int prioridadeT4;
+    int prioridadeT5;
+
+    // Lista de solicitacoes aos trilhos criticos por cada trem
+    QQueue<int>* listaSolicitacoes1;
+    QQueue<int>* listaSolicitacoes2;
+    QQueue<int>* listaSolicitacoes3;
+    QQueue<int>* listaSolicitacoes4;
+    QQueue<int>* listaSolicitacoes5;
+    QQueue<int>* listaSolicitacoes6;
+    QQueue<int>* listaSolicitacoes7;
 };
 
 #endif // MAINWINDOW_H
