@@ -63,14 +63,6 @@ private:
     QQueue<int>* listaSolicitacoes5;
     QQueue<int>* listaSolicitacoes6;
     QQueue<int>* listaSolicitacoes7;
-
-    bool trilho1Livre;
-    bool trilho2Livre;
-    bool trilho3Livre;
-    bool trilho4Livre;
-    bool trilho5Livre;
-    bool trilho6Livre;
-    bool trilho7Livre;
 };
 
 #endif // MAINWINDOW_H

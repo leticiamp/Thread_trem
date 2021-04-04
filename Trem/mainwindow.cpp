@@ -22,14 +22,6 @@ MainWindow::MainWindow(QWidget *parent) :
     listaSolicitacoes6 = new QQueue<int>;
     listaSolicitacoes7 = new QQueue<int>;
 
-    trilho1Livre = true;
-    trilho2Livre = true;
-    trilho3Livre = true;
-    trilho4Livre = true;
-    trilho5Livre = true;
-    trilho6Livre = true;
-    trilho7Livre = true;
-
     /*
      * Conecta o sinal UPDATEGUI à função UPDATEINTERFACE.
      * Ou seja, sempre que o sinal UPDATEGUI foi chamado, será executada a função UPDATEINTERFACE.
@@ -64,9 +56,6 @@ void MainWindow::signalProcessing(int ID, bool flag) {
             listaSolicitacoes3->enqueue(ID);
         } else {
             qInfo() << "Trem 1 saiu";
-            // Libera os trilhos
-            trilho1Livre = true;
-            trilho3Livre = true;
             // Removendo o T1 na lista de solicitacoes do trilho critico
             listaSolicitacoes1->removeAt(listaSolicitacoes1->indexOf(1));
             listaSolicitacoes3->removeAt(listaSolicitacoes3->indexOf(1));
@@ -81,10 +70,6 @@ void MainWindow::signalProcessing(int ID, bool flag) {
             listaSolicitacoes1->enqueue(ID);
         } else {
             qInfo() << "Trem 2 saiu";
-            trilho2Livre = true;
-            trilho5Livre = true;
-            trilho4Livre = true;
-            trilho1Livre = true;
             listaSolicitacoes2->removeAt(listaSolicitacoes2->indexOf(2));
             listaSolicitacoes5->removeAt(listaSolicitacoes5->indexOf(2));
             listaSolicitacoes4->removeAt(listaSolicitacoes4->indexOf(2));
@@ -98,8 +83,6 @@ void MainWindow::signalProcessing(int ID, bool flag) {
             listaSolicitacoes2->enqueue(ID);
         } else {
             qInfo() << "Trem 3 saiu";
-            trilho2Livre = true;
-            trilho6Livre = true;
             listaSolicitacoes6->removeAt(listaSolicitacoes6->indexOf(3));
             listaSolicitacoes2->removeAt(listaSolicitacoes2->indexOf(3));
         }
@@ -112,9 +95,6 @@ void MainWindow::signalProcessing(int ID, bool flag) {
             listaSolicitacoes7->enqueue(ID);
         } else {
             qInfo() << "Trem 4 saiu";
-            trilho3Livre = true;
-            trilho4Livre = true;
-            trilho7Livre = true;
             listaSolicitacoes3->removeAt(listaSolicitacoes3->indexOf(4));
             listaSolicitacoes4->removeAt(listaSolicitacoes4->indexOf(4));
             listaSolicitacoes7->removeAt(listaSolicitacoes7->indexOf(4));
@@ -128,9 +108,6 @@ void MainWindow::signalProcessing(int ID, bool flag) {
             listaSolicitacoes6->enqueue(ID);
         } else {
             qInfo() << "Trem 5 saiu";
-            trilho7Livre = true;
-            trilho5Livre = true;
-            trilho6Livre = true;
             listaSolicitacoes7->removeAt(listaSolicitacoes7->indexOf(5));
             listaSolicitacoes5->removeAt(listaSolicitacoes5->indexOf(5));
             listaSolicitacoes6->removeAt(listaSolicitacoes6->indexOf(5));
@@ -168,33 +145,19 @@ void MainWindow::updateInterface(int id, int x, int y){
     prioridadeT5 = listaSolicitacoes7->indexOf(5) + listaSolicitacoes5->indexOf(5) + listaSolicitacoes6->indexOf(5);
 
     // Verifica qual trem tem prioridade para voltar a andar
-    if (prioridadeT1 <= prioridadeT2 && prioridadeT1 <= prioridadeT3 && prioridadeT1 <= prioridadeT4 && prioridadeT1 <= prioridadeT5 && trilho1Livre && trilho3Livre) {
-        trilho1Livre = false;
-        trilho3Livre = false;
+    if (prioridadeT1 <= prioridadeT2 && prioridadeT1 <= prioridadeT3 && prioridadeT1 <=prioridadeT4 && prioridadeT1 <= prioridadeT5) {
         trem1->start();
     }
-    if (prioridadeT2 <= prioridadeT1 && prioridadeT2 <= prioridadeT3 && prioridadeT2 <= prioridadeT4 && prioridadeT2 <= prioridadeT5 && trilho2Livre && trilho5Livre && trilho4Livre && trilho1Livre) {
-        trilho2Livre = false;
-        trilho5Livre = false;
-        trilho4Livre = false;
-        trilho1Livre = false;
+    if (prioridadeT2 <= prioridadeT1 && prioridadeT2 <= prioridadeT3 && prioridadeT2 <=prioridadeT4 && prioridadeT2 <= prioridadeT5) {
         trem2->start();
     }
-    if (prioridadeT3 <= prioridadeT2 && prioridadeT3 <= prioridadeT1 && prioridadeT3 <= prioridadeT4 && prioridadeT3 <= prioridadeT5 && trilho2Livre && trilho6Livre) {
-        trilho2Livre = false;
-        trilho6Livre = false;
+    if (prioridadeT3 <= prioridadeT2 && prioridadeT3 <= prioridadeT1 && prioridadeT3 <=prioridadeT4 && prioridadeT3 <= prioridadeT5) {
         trem3->start();
     }
-    if (prioridadeT4 <= prioridadeT2 && prioridadeT4 <= prioridadeT3 && prioridadeT4 <= prioridadeT1 && prioridadeT4 <= prioridadeT5 && trilho3Livre && trilho4Livre && trilho7Livre) {
-        trilho3Livre = false;
-        trilho4Livre = false;
-        trilho7Livre = false;
+    if (prioridadeT4 <= prioridadeT2 && prioridadeT4 <= prioridadeT3 && prioridadeT4 <=prioridadeT1 && prioridadeT4 <= prioridadeT5) {
         trem4->start();
     }
-    if (prioridadeT5 <= prioridadeT2 && prioridadeT5 <= prioridadeT3 && prioridadeT5 <= prioridadeT4 && prioridadeT5 <= prioridadeT1 && trilho7Livre && trilho5Livre && trilho6Livre) {
-        trilho7Livre = false;
-        trilho5Livre = false;
-        trilho6Livre = false;
+    if (prioridadeT5 <= prioridadeT2 && prioridadeT5 <= prioridadeT3 && prioridadeT5 <=prioridadeT4 && prioridadeT5 <= prioridadeT1) {
         trem5->start();
     }
 }
@@ -250,5 +213,11 @@ void MainWindow::on_velocidade_t4_valueChanged(int value)
 
 void MainWindow::on_velocidade_t5_valueChanged(int value)
 {
-    trem5->setVelocidade(value);
+    if(value == 200) {
+        trem5->terminate();
+    }
+    else {
+        trem5->start();
+        trem5->setVelocidade(value);
+    }
 }

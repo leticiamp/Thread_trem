@@ -388,19 +388,16 @@
      <number>0</number>
     </property>
     <property name="maximum">
-     <number>150</number>
-    </property>
-    <property name="singleStep">
-     <number>1</number>
+     <number>200</number>
     </property>
     <property name="pageStep">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="value">
-     <number>150</number>
+     <number>100</number>
     </property>
     <property name="sliderPosition">
-     <number>150</number>
+     <number>100</number>
     </property>
     <property name="tracking">
      <bool>true</bool>
@@ -444,10 +441,13 @@
      <string notr="true">background-color: rgb(117, 80, 123);</string>
     </property>
     <property name="maximum">
-     <number>150</number>
+     <number>200</number>
+    </property>
+    <property name="value">
+     <number>100</number>
     </property>
     <property name="sliderPosition">
-     <number>150</number>
+     <number>100</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -469,10 +469,13 @@
      <string notr="true">background-color: rgb(245, 121, 0);</string>
     </property>
     <property name="maximum">
-     <number>150</number>
+     <number>200</number>
+    </property>
+    <property name="value">
+     <number>100</number>
     </property>
     <property name="sliderPosition">
-     <number>150</number>
+     <number>100</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -494,13 +497,13 @@
      <string notr="true">background-color: rgb(52, 101, 164);</string>
     </property>
     <property name="maximum">
-     <number>150</number>
+     <number>200</number>
     </property>
-    <property name="pageStep">
-     <number>10</number>
+    <property name="value">
+     <number>100</number>
     </property>
     <property name="sliderPosition">
-     <number>150</number>
+     <number>100</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -522,10 +525,13 @@
      <string notr="true">background-color: rgb(115, 210, 22);</string>
     </property>
     <property name="maximum">
-     <number>150</number>
+     <number>200</number>
+    </property>
+    <property name="value">
+     <number>100</number>
     </property>
     <property name="sliderPosition">
-     <number>150</number>
+     <number>100</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
